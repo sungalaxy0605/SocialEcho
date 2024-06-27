@@ -1,546 +1,182 @@
-Contribution: 2018-08-27 20:00
+# SocialEcho
 
-Contribution: 2018-08-27 20:01
+A social networking platform with automated content moderation and context-based authentication system.
 
-Contribution: 2018-08-27 20:02
+[Watch Demo](https://youtu.be/Tmncayg7FeU)
 
-Contribution: 2018-08-30 20:00
+![UI-community](https://raw.githubusercontent.com/nz-m/SocialEcho/main/resources/UI-community.png)
 
-Contribution: 2018-08-30 20:01
+## Table of Contents
 
-Contribution: 2018-08-30 20:02
+- [Project Overview](#project-overview)
+- [Features](#features)
+- [Technologies](#technologies)
+- [Schema Diagram](#schema-diagram)
+- [Getting Started](#getting-started)
+- [Usage](#usage)
+- [License](#license)
 
-Contribution: 2018-09-01 20:00
+## Project Overview
 
-Contribution: 2018-09-01 20:01
+The project is a social networking platform built using the MERN (MongoDB, Express.js, React.js, Node.js) stack. It incorporates two major features: an automated content moderation system and context-based authentication. These features are accompanied by common functionalities found in social media applications, such as profile creation, post creation and sharing, liking and commenting on posts, and following/unfollowing users.
 
-Contribution: 2018-09-01 20:02
+### Automated Content Moderation
 
-Contribution: 2018-09-01 20:03
+The platform's automated content moderation system utilizes various NLP (Natural Language Processing) APIs. These APIs include:
 
-Contribution: 2018-09-01 20:04
+- Perspective API: Used for filtering spam, profanity, toxicity, harassment etc.
+- TextRazor API: Integrated for content categorization.
+- Hugging Face Interface API: Utilized with BART Large MNLI for content categorization.
 
-Contribution: 2018-09-01 20:05
+A Flask application has been developed to provide similar functionality as the Hugging Face Interface API's classifier. The Flask app utilizes the BART Large MNLI model. It operates as a zero-shot classification pipeline with a PyTorch framework.
 
-Contribution: 2018-09-01 20:06
+The system allows flexibility in choosing different services for API usage or disabling them without affecting overall functionality by using a common interface for interacting with the APIs.
 
-Contribution: 2018-09-01 20:07
+When a user posts content, it undergoes a thorough filtering process to ensure compliance with the community guidelines. Additionally, users have the ability to report posts that they find inappropriate, which triggers a manual review process.
 
-Contribution: 2018-09-01 20:08
+### Context-Based Authentication
 
-Contribution: 2018-09-01 20:09
+The platform implements context-based authentication to enhance user account security. It takes into consideration user location, IP address, and device information for authentication purposes. Users can conveniently manage their devices directly from the platform. To ensure data privacy, this information is encrypted using the AES algorithm and securely stored in the database.
 
-Contribution: 2018-09-02 20:00
+In case of a suspicious login attempt, users are promptly notified via email and are required to confirm their identity to protect against unauthorized access.
 
-Contribution: 2018-09-03 20:00
+### User Roles
 
-Contribution: 2018-09-03 20:01
+There are three distinct user roles within the system:
 
-Contribution: 2018-09-03 20:02
+1. Admin: The admin role manages the overall system, including moderator management, community management, content moderation, monitoring user activity, and more.
+2. Moderators: Moderators manage communities, manually review reported posts, and perform other moderation-related tasks.
+3. General Users: General users have the ability to make posts, like comments, and perform other actions within the platform.
 
-Contribution: 2018-09-03 20:03
 
-Contribution: 2018-09-03 20:04
 
-Contribution: 2018-09-03 20:05
+## Features
 
-Contribution: 2018-09-03 20:06
+- [x] User authentication and authorization (JWT)
+- [x] User profile creation and management
+- [x] Post creation and management
+- [x] Commenting on posts
+- [x] Liking posts and comments
+- [x] Following/unfollowing users
+- [x] Reporting posts
+- [x] Content moderation
+- [x] Context-based authentication
+- [x] Device management
+- [x] Admin dashboard
+- [x] Moderator dashboard
+- [x] Email notifications
 
-Contribution: 2018-09-03 20:07
 
-Contribution: 2018-09-03 20:08
+## Technologies
 
-Contribution: 2018-09-05 20:00
+- React.js
+- Redux
+- Node.js
+- Express.js
+- MongoDB
+- Tailwind CSS
+- JWT Authentication
+- Passport.js
+- Nodemailer
+- Crypto-js
+- Azure Blob Storage
+- Flask
+- Hugging Face Transformers
 
-Contribution: 2018-09-05 20:01
 
-Contribution: 2018-09-05 20:02
+## Schema Diagram
 
-Contribution: 2018-09-05 20:03
+![Schema Diagram](https://raw.githubusercontent.com/nz-m/SocialEcho/main/resources/Schema-Diagram.png)
 
-Contribution: 2018-09-05 20:04
 
-Contribution: 2018-09-05 20:05
 
-Contribution: 2018-09-05 20:06
+## Getting Started
 
-Contribution: 2018-09-05 20:07
+### Prerequisites
 
-Contribution: 2018-09-05 20:08
+Before running the application, make sure you have the following installed:
 
-Contribution: 2018-09-06 20:00
+- Node.js
+- MongoDB or MongoDB Atlas account
 
-Contribution: 2018-09-06 20:01
+### Installation
 
-Contribution: 2018-09-06 20:02
+1. Clone the repository
 
-Contribution: 2018-09-09 20:00
+```bash
+git clone https://github.com/nz-m/SocialEcho.git
+```
+2. Go to the project directory and install dependencies for both the client and server
 
-Contribution: 2018-09-09 20:01
+```bash
+cd client
+npm install
+```
 
-Contribution: 2018-09-09 20:02
+```bash
+cd server
+npm install
+```
 
-Contribution: 2018-09-09 20:03
+3. Create a `.env` file in both the `client` and `server` directories and add the environment variables as shown in the `.env.example` files.
+4. Start the server
 
-Contribution: 2018-09-09 20:04
+```bash
+cd server
+npm start
+```
 
-Contribution: 2018-09-09 20:05
+5. Start the client
 
-Contribution: 2018-09-09 20:06
+```bash
+cd client
+npm start
+```
 
-Contribution: 2018-09-09 20:07
 
-Contribution: 2018-09-10 20:00
+### Configuration
 
-Contribution: 2018-09-10 20:01
+Run the `admin_tool.sh` script from the server directory with permissions for executing the script. This script is used for configuring the admin account, creating the initial communities, and other settings.
+```bash
+./admin_tool.sh
+``` 
 
-Contribution: 2018-09-10 20:02
+#### `.env` Variables
 
-Contribution: 2018-09-10 20:03
+For email service of context-based authentication, the following variables are required:
 
-Contribution: 2018-09-10 20:04
+```bash
+EMAIL=
+PASSWORD=
+EMAIL_SERVICE=
+```
 
-Contribution: 2018-09-10 20:05
+For content moderation, you need the `PERSPECTIVE_API_KEY` and either the `INTERFACE_API_KEY` or `TEXTRAZOR_API_KEY`. Visit the following links to obtain the API keys:
 
-Contribution: 2018-09-10 20:06
+- [Perspective API](https://developers.perspectiveapi.com/s/docs-get-started)
+- [TextRazor API](https://www.textrazor.com/)
+- [Hugging Face Interface API](https://huggingface.co/facebook/bart-large-mnli)
 
-Contribution: 2018-09-10 20:07
+If you prefer, the Flask server can be run locally as an alternative to using the Hugging Face Interface API or TextRazor API. Refer to the `classifier_server` directory for more information.
 
-Contribution: 2018-09-10 20:08
 
-Contribution: 2018-09-10 20:09
+>**Note:** Configuration for context-based authentication and content moderation features are **_not mandatory_** to run the application. However, these features will not be available if the configuration is not provided.
 
-Contribution: 2018-09-13 20:00
 
-Contribution: 2018-09-13 20:01
+## Usage
 
-Contribution: 2018-09-13 20:02
+### Admin
 
-Contribution: 2018-09-13 20:03
+The admin dashboard can be accessed at the `/admin` route. Use the `admin_tool.sh` script to configure the admin account. The admin account can be used to manage moderators, communities, and perform other admin-related tasks. You can also enable/disable or switch API services using the admin dashboard.
 
-Contribution: 2018-09-14 20:00
+### Moderator
 
-Contribution: 2018-09-14 20:01
+Moderators have specific email domain (`@mod.socialecho.com`). When registering with an email from this domain, the user is automatically assigned the moderator role. Moderators can be assigned to different communities from the admin dashboard.
 
-Contribution: 2018-09-16 20:00
+#### Demo
+https://youtu.be/Tmncayg7FeU
 
-Contribution: 2018-09-16 20:01
+## License
 
-Contribution: 2018-09-16 20:02
-
-Contribution: 2018-09-16 20:03
-
-Contribution: 2018-09-16 20:04
-
-Contribution: 2018-09-16 20:05
-
-Contribution: 2018-09-16 20:06
-
-Contribution: 2018-09-16 20:07
-
-Contribution: 2018-09-16 20:08
-
-Contribution: 2018-09-16 20:09
-
-Contribution: 2018-09-18 20:00
-
-Contribution: 2018-09-18 20:01
-
-Contribution: 2018-09-18 20:02
-
-Contribution: 2018-09-21 20:00
-
-Contribution: 2018-09-22 20:00
-
-Contribution: 2018-09-23 20:00
-
-Contribution: 2018-09-23 20:01
-
-Contribution: 2018-09-23 20:02
-
-Contribution: 2018-09-23 20:03
-
-Contribution: 2018-09-23 20:04
-
-Contribution: 2018-09-23 20:05
-
-Contribution: 2018-09-23 20:06
-
-Contribution: 2018-09-23 20:07
-
-Contribution: 2018-09-23 20:08
-
-Contribution: 2018-09-23 20:09
-
-Contribution: 2018-09-26 20:00
-
-Contribution: 2018-09-26 20:01
-
-Contribution: 2018-09-26 20:02
-
-Contribution: 2018-09-26 20:03
-
-Contribution: 2018-09-26 20:04
-
-Contribution: 2018-09-29 20:00
-
-Contribution: 2018-09-29 20:01
-
-Contribution: 2018-09-29 20:02
-
-Contribution: 2018-09-29 20:03
-
-Contribution: 2018-09-29 20:04
-
-Contribution: 2018-09-29 20:05
-
-Contribution: 2018-09-29 20:06
-
-Contribution: 2018-09-29 20:07
-
-Contribution: 2018-09-29 20:08
-
-Contribution: 2018-09-30 20:00
-
-Contribution: 2018-09-30 20:01
-
-Contribution: 2018-09-30 20:02
-
-Contribution: 2018-09-30 20:03
-
-Contribution: 2018-10-01 20:00
-
-Contribution: 2018-10-01 20:01
-
-Contribution: 2018-10-01 20:02
-
-Contribution: 2018-10-01 20:03
-
-Contribution: 2018-10-01 20:04
-
-Contribution: 2018-10-01 20:05
-
-Contribution: 2018-10-01 20:06
-
-Contribution: 2018-10-01 20:07
-
-Contribution: 2018-10-01 20:08
-
-Contribution: 2018-10-01 20:09
-
-Contribution: 2018-10-02 20:00
-
-Contribution: 2018-10-02 20:01
-
-Contribution: 2018-10-02 20:02
-
-Contribution: 2018-10-02 20:03
-
-Contribution: 2018-10-02 20:04
-
-Contribution: 2018-10-02 20:05
-
-Contribution: 2018-10-04 20:00
-
-Contribution: 2018-10-06 20:00
-
-Contribution: 2018-10-06 20:01
-
-Contribution: 2018-10-06 20:02
-
-Contribution: 2018-10-06 20:03
-
-Contribution: 2018-10-06 20:04
-
-Contribution: 2018-10-06 20:05
-
-Contribution: 2018-10-06 20:06
-
-Contribution: 2018-10-06 20:07
-
-Contribution: 2018-10-06 20:08
-
-Contribution: 2018-10-06 20:09
-
-Contribution: 2018-10-08 20:00
-
-Contribution: 2018-10-10 20:00
-
-Contribution: 2018-10-10 20:01
-
-Contribution: 2018-10-10 20:02
-
-Contribution: 2018-10-10 20:03
-
-Contribution: 2018-10-10 20:04
-
-Contribution: 2018-10-10 20:05
-
-Contribution: 2018-10-12 20:00
-
-Contribution: 2018-10-12 20:01
-
-Contribution: 2018-10-12 20:02
-
-Contribution: 2018-10-14 20:00
-
-Contribution: 2018-10-14 20:01
-
-Contribution: 2018-10-14 20:02
-
-Contribution: 2018-10-14 20:03
-
-Contribution: 2018-10-14 20:04
-
-Contribution: 2018-10-16 20:00
-
-Contribution: 2018-10-20 20:00
-
-Contribution: 2018-10-20 20:01
-
-Contribution: 2018-10-20 20:02
-
-Contribution: 2018-10-20 20:03
-
-Contribution: 2018-10-20 20:04
-
-Contribution: 2018-10-20 20:05
-
-Contribution: 2018-10-20 20:06
-
-Contribution: 2018-10-20 20:07
-
-Contribution: 2018-10-22 20:00
-
-Contribution: 2018-10-22 20:01
-
-Contribution: 2018-10-22 20:02
-
-Contribution: 2018-10-22 20:03
-
-Contribution: 2018-10-22 20:04
-
-Contribution: 2018-10-23 20:00
-
-Contribution: 2018-10-23 20:01
-
-Contribution: 2018-10-24 20:00
-
-Contribution: 2018-10-24 20:01
-
-Contribution: 2018-10-24 20:02
-
-Contribution: 2018-10-24 20:03
-
-Contribution: 2018-10-24 20:04
-
-Contribution: 2018-10-24 20:05
-
-Contribution: 2018-10-24 20:06
-
-Contribution: 2018-10-28 20:00
-
-Contribution: 2018-10-28 20:01
-
-Contribution: 2018-11-03 20:00
-
-Contribution: 2018-11-03 20:01
-
-Contribution: 2018-11-03 20:02
-
-Contribution: 2018-11-03 20:03
-
-Contribution: 2018-11-07 20:00
-
-Contribution: 2018-11-07 20:01
-
-Contribution: 2018-11-07 20:02
-
-Contribution: 2018-11-10 20:00
-
-Contribution: 2018-11-10 20:01
-
-Contribution: 2018-11-10 20:02
-
-Contribution: 2018-11-10 20:03
-
-Contribution: 2018-11-10 20:04
-
-Contribution: 2018-11-10 20:05
-
-Contribution: 2018-11-10 20:06
-
-Contribution: 2018-11-10 20:07
-
-Contribution: 2018-11-10 20:08
-
-Contribution: 2018-11-10 20:09
-
-Contribution: 2018-11-11 20:00
-
-Contribution: 2018-11-11 20:01
-
-Contribution: 2018-11-11 20:02
-
-Contribution: 2018-11-11 20:03
-
-Contribution: 2018-11-12 20:00
-
-Contribution: 2018-11-12 20:01
-
-Contribution: 2018-11-12 20:02
-
-Contribution: 2018-11-12 20:03
-
-Contribution: 2018-11-12 20:04
-
-Contribution: 2018-11-12 20:05
-
-Contribution: 2018-11-12 20:06
-
-Contribution: 2018-11-14 20:00
-
-Contribution: 2018-11-14 20:01
-
-Contribution: 2018-11-14 20:02
-
-Contribution: 2018-11-14 20:03
-
-Contribution: 2018-11-14 20:04
-
-Contribution: 2018-11-14 20:05
-
-Contribution: 2018-11-15 20:00
-
-Contribution: 2018-11-15 20:01
-
-Contribution: 2018-11-15 20:02
-
-Contribution: 2018-11-15 20:03
-
-Contribution: 2018-11-15 20:04
-
-Contribution: 2018-11-16 20:00
-
-Contribution: 2018-11-16 20:01
-
-Contribution: 2018-11-16 20:02
-
-Contribution: 2018-11-16 20:03
-
-Contribution: 2018-11-16 20:04
-
-Contribution: 2018-11-16 20:05
-
-Contribution: 2018-11-16 20:06
-
-Contribution: 2018-11-18 20:00
-
-Contribution: 2018-11-18 20:01
-
-Contribution: 2018-11-19 20:00
-
-Contribution: 2018-11-19 20:01
-
-Contribution: 2018-11-19 20:02
-
-Contribution: 2018-11-19 20:03
-
-Contribution: 2018-11-19 20:04
-
-Contribution: 2018-11-20 20:00
-
-Contribution: 2018-11-20 20:01
-
-Contribution: 2018-11-20 20:02
-
-Contribution: 2018-11-20 20:03
-
-Contribution: 2018-11-20 20:04
-
-Contribution: 2018-11-23 20:00
-
-Contribution: 2018-11-24 20:00
-
-Contribution: 2018-11-24 20:01
-
-Contribution: 2018-11-24 20:02
-
-Contribution: 2018-11-24 20:03
-
-Contribution: 2018-11-24 20:04
-
-Contribution: 2018-11-24 20:05
-
-Contribution: 2018-11-24 20:06
-
-Contribution: 2018-11-24 20:07
-
-Contribution: 2018-11-24 20:08
-
-Contribution: 2018-11-25 20:00
-
-Contribution: 2018-11-25 20:01
-
-Contribution: 2018-11-25 20:02
-
-Contribution: 2018-11-27 20:00
-
-Contribution: 2018-11-27 20:01
-
-Contribution: 2018-11-27 20:02
-
-Contribution: 2018-11-27 20:03
-
-Contribution: 2018-11-27 20:04
-
-Contribution: 2018-11-27 20:05
-
-Contribution: 2018-11-27 20:06
-
-Contribution: 2018-11-28 20:00
-
-Contribution: 2018-11-28 20:01
-
-Contribution: 2018-11-28 20:02
-
-Contribution: 2018-11-28 20:03
-
-Contribution: 2018-11-28 20:04
-
-Contribution: 2018-11-29 20:00
-
-Contribution: 2018-11-29 20:01
-
-Contribution: 2018-11-29 20:02
-
-Contribution: 2018-11-30 20:00
-
-Contribution: 2018-11-30 20:01
-
-Contribution: 2018-11-30 20:02
-
-Contribution: 2018-11-30 20:03
-
-Contribution: 2018-11-30 20:04
-
-Contribution: 2018-12-01 20:00
-
-Contribution: 2018-12-01 20:01
-
-Contribution: 2018-12-01 20:02
-
-Contribution: 2018-12-01 20:03
-
-Contribution: 2018-12-01 20:04
-
-Contribution: 2018-12-01 20:05
-
-Contribution: 2018-12-01 20:06
-
-Contribution: 2018-12-02 20:00
-
-Contribution: 2018-12-02 20:01
-
-Contribution: 2018-12-02 20:02
+This project is licensed under the [MIT License](https://github.com/nz-m/SocialEcho/blob/main/LICENSE).
 
